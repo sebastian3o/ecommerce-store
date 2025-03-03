@@ -5,7 +5,6 @@ import { Product } from '@/types'
 import { Expand, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { MouseEventHandler } from 'react'
 import { Currency } from './currency'
 
 interface ProductCard {
@@ -14,10 +13,13 @@ interface ProductCard {
 
 export const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const router = useRouter()
+
+
   const handleClick = () => {
     router.push(`/product/${data.id}`)
   }
 
+ 
 
   return (
     <div
