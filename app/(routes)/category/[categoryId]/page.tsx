@@ -12,13 +12,13 @@ import { MobileFilters } from './components/mobile-filters'
 export const revalidate = 0
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     categoryId: string
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     colorId: string
     sizeId: string
-  }
+  }>
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({
@@ -27,8 +27,8 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
 }) => {
   const products = await getProducts({
     categoryId: (await params).categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    colorId:(await searchParams).colorId,
+    sizeId: (await searchParams).sizeId,
   })
 
   const sizes = await getSizes()
